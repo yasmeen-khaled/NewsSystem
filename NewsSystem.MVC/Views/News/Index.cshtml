@@ -1,0 +1,87 @@
+﻿@model IEnumerable<NewsSystem.DAL.News>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    @*<thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.news)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublicationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuthorId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>*@
+    <tbody>
+@foreach (var item in Model) {
+            <div class="alert alert-primary">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(modelItem => item.Title)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </dd>
+                </dl>
+                @if (item.Image != null)
+                {
+                    <img style="width:50%;" src=@(ImageHelpers.ByteArrayToString(item.Image)) alt=@item.Title>
+                }
+                @if (ViewBag.isSigned == true)
+                {
+                    <div>
+                        @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
+                        @Html.ActionLink("Details", "Details", new {  id=item.Id  }) |
+                        @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })
+                    </div>
+                }
+            </div>
+        @*<tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.news)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublicationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuthorId)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
+                    @Html.ActionLink("Details", "Details", new {  id=item.Id  }) |
+                    @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })
+            </td>
+        </tr>*@
+}
+    </tbody>
+</table>
